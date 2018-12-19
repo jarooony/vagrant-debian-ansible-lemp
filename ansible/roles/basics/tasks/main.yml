@@ -18,6 +18,7 @@
     - apt-transport-https
     - ca-certificates
     - imagemagick
+    - tor
 
 ##################################################
 ### Convenience

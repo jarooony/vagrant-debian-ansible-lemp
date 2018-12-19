@@ -19,7 +19,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.require_version ">= 2.0.1"
 
 # Detect host OS for different folder share configuration
-module OS
+class OS
     def OS.windows?
         (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
     end
@@ -94,6 +94,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if Vagrant.has_plugin?("vagrant-proxyconf")
     config.proxy.http     = "socks://127.0.0.1:9050"
     config.proxy.https    = "socks://127.0.0.1:9050"
+    config.proxy.no_proxy = "localhost"
+    config.apt_proxy.http = "DIRECT"
+    config.apt_proxy.https = "DIRECT"
   end
 
   # Configure shared folder
