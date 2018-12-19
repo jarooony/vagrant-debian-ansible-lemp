@@ -64,6 +64,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      exit
   end
 
+  if !Vagrant.has_plugin?('vagrant-proxyconf')
+     puts "The vagrant-proxyconf plugin is required. Please install it with \"vagrant plugin install vagrant-proxyconf\""
+     exit
+  end
+
   config.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.customize ['modifyvm', :id, '--memory', 2048]
@@ -84,6 +89,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.aliases = hosts
   config.vm.hostname = vagrant_config['servername']
   config.vm.network :private_network, ip: vagrant_config['private_ip']
+
+  # proxy config
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http     = "socks://127.0.0.1:9050"
+    config.proxy.https    = "socks://127.0.0.1:9050"
+  end
 
   # Configure shared folder
   if OS.windows?

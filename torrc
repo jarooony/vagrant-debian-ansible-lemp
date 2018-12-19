@@ -1,0 +1,6 @@
+# torrc
+EntryNodes {de}
+StrictNodes 1
+CircuitBuildTimeout 10
+LearnCircuitBuildTimeout 0
+MaxCircuitDirtiness 10
