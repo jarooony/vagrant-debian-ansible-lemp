@@ -73,7 +73,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.gui = false
       vb.customize ['modifyvm', :id, '--memory', 2048]
       vb.customize ["modifyvm", :id, "--cpus", 2]
-      vb.customize ["modifyvm", :id, "--name", vagrant_config['vmname']]
+     #vb.customize ["modifyvm", :id, "--name", vagrant_config['vmname']]
   end
 
   config.vm.provider "parallels" do |v|
