@@ -37,7 +37,7 @@
     - php{{ php_version }}
     - php{{ php_version }}-fpm
     - php{{ php_version }}-mysql
-#    - php{{ php_version }}-mcrypt
+#    - php{{ php_version }}-mcrypt # outdated since php 7.2
     - php{{ php_version }}-cli
     - php{{ php_version }}-curl
     - php{{ php_version }}-gd
@@ -55,7 +55,7 @@
     - php{{ php_version }}-igbinary
     - php{{ php_version }}-bcmath
     - php{{ php_version }}-imagick
-    - php{{ php_version }}-memcache
+#    - php{{ php_version }}-memcache # outdated since php 7.3
     - php{{ php_version }}-memcached
     - php{{ php_version }}-mongodb
     - php{{ php_version }}-msgpack
@@ -103,7 +103,7 @@
   get_url:
     url: "{{ phpunit_url }}"
     dest: "{{ phpunit_path }}"
-    mode: 777
+    mode: 0777
 
 ##################################################
 ### Install Composer
@@ -111,7 +111,7 @@
   get_url:
     url: "{{ composer_url }}"
     dest: "{{ composer_tmp }}"
-    mode: 777
+    mode: 0777
 
 - name: Install Composer
   shell: "cat {{ composer_tmp }} | php -- --install-dir={{ composer_path }}"
